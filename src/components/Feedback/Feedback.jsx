@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { StatisticsBox } from '../Statistics/Statistics';
@@ -67,7 +67,7 @@ export const Feedback = () => {
     //     (this.state.good / this.state.total) * 100
     //   ),
     // });
-    setPositivePercentage(Math.floor(good / total) * 100);
+    setPositivePercentage(Math.floor((good / total) * 100));
   };
 
   // const { good, neutral, bad, total, positivePercentage, selectedBtn } =
