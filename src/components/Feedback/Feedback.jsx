@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { StatisticsBox } from '../Statistics/Statistics';
 import { SectionBox } from 'components/Section/Section';
@@ -180,13 +180,13 @@ export const Feedback = () => {
 //   }
 // }
 
-Feedback.propTypes = {
-  state: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    selectedBtn: PropTypes.number.isRequired,
-    positivePercentage: PropTypes.number.isRequired,
-  }).isRequired,
-};
+// Feedback.propTypes = {
+//   state: PropTypes.shape({
+//     good: PropTypes.number.isRequired,
+//     neutral: PropTypes.number.isRequired,
+//     bad: PropTypes.number.isRequired,
+//     total: PropTypes.number.isRequired,
+//     selectedBtn: PropTypes.number.isRequired,
+//     positivePercentage: PropTypes.number.isRequired,
+//   }).isRequired,
+// };
