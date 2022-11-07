@@ -5,19 +5,19 @@ import { StatisticsBox } from '../Statistics/Statistics';
 import { SectionBox } from 'components/Section/Section';
 import { FeedbackOptionsBox } from '../FeedbackOptions/FeedbackOptions';
 
+const options = Object.freeze({
+  good: 'Good',
+  neutral: 'Neutral',
+  bad: 'Bad',
+});
+
 export const Feedback = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [total, setTotal] = useState(0);
-  const [selectedBtn, setSelectedBtn] = useState(null);
+  const [selectedBtn, setSelectedBtn] = useState('');
   const [positivePercentage, setPositivePercentage] = useState(0);
-
-  const options = Object.freeze({
-    good: 'Good',
-    neutral: 'Neutral',
-    bad: 'Bad',
-  });
 
   const onLeaveFeedback = option => async () => {
     await setSelectedBtn(option);
