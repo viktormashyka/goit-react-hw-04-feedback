@@ -15,71 +15,35 @@ export const Feedback = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [selectedBtn, setSelectedBtn] = useState('');
-  const [positivePercentage, setPositivePercentage] = useState(0);
 
-  const onLeaveFeedback = option => async () => {
-    await setSelectedBtn(option);
-    // console.log('selectedBtn, ', selectedBtn);
-    if (selectedBtn === options.good) {
-      await countGoodFeedback();
-    } else if (selectedBtn === options.neutral) {
-      await countNeutralFeedback();
-    } else if (selectedBtn === options.bad) {
-      await countBadFeedback();
-    } else {
-      console.log('selectedBtn, ', selectedBtn);
+  const onLeaveFeedback = option => {
+    if (option === options.good) {
+      setGood(prev => prev + 1);
+      return;
+    }
+    if (option === options.neutral) {
+      setNeutral(prev => prev + 1);
+      return;
+    }
+    if (option === options.bad) {
+      setBad(prev => prev + 1);
     }
   };
 
-  const countGoodFeedback = async evt => {
-    // await this.setState({ good: this.state.good + 1 });
-    await setGood(good + 1);
-    await countTotalFeedback();
-    await countPositiveFeedbackPercentage();
+  const countPositiveFeedbackPercentage = () => {
+    const total = good + neutral + bad;
+    return Math.floor((good / total) * 100) || 0;
   };
 
-  const countNeutralFeedback = async evt => {
-    // await this.setState({ neutral: this.state.neutral + 1 });
-    await setNeutral(neutral + 1);
-    await countTotalFeedback();
-    await countPositiveFeedbackPercentage();
-  };
+  const total = good + neutral + bad;
+  const positivePercentage = countPositiveFeedbackPercentage();
 
-  const countBadFeedback = async evt => {
-    //  await this.setState({ bad: this.state.bad + 1 });
-    await setBad(bad + 1);
-    await countTotalFeedback();
-    await countPositiveFeedbackPercentage();
-  };
-
-  const countTotalFeedback = state => {
-    // this.setState({
-    //   total: this.state.good + this.state.neutral + this.state.bad,
-    // });
-    setTotal(good + neutral + bad);
-  };
-
-  const countPositiveFeedbackPercentage = state => {
-    // this.setState({
-    //   positivePercentage: Math.floor(
-    //     (this.state.good / this.state.total) * 100
-    //   ),
-    // });
-    setPositivePercentage(Math.floor((good / total) * 100));
-  };
-
-  // const { good, neutral, bad, total, positivePercentage, selectedBtn } =
-  //   this.state;
-  // const { onLeaveFeedback } = this;
   return (
     <div>
       <SectionBox title="Please leave feedback">
         <FeedbackOptionsBox
           options={options}
           onLeaveFeedback={onLeaveFeedback}
-          selected={selectedBtn}
         />
       </SectionBox>
       <SectionBox title="Statistics">
